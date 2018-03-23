@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('list', 'AvatarController@showAvatarList');
+Route::get('pic/{id}', 'AvatarController@showAvatar');
+Route::get('add', 'AvatarController@addAvatar');
+Route::post('add', 'AvatarController@saveAvatar');
