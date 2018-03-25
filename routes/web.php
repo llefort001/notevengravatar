@@ -14,7 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('list', 'AvatarController@showAvatarList');
-Route::get('pic/{id}', 'AvatarController@showAvatar');
-Route::get('add', 'AvatarController@addAvatar');
-Route::post('add', 'AvatarController@saveAvatar');
+Route::get('avatars', 'HomeController@index')->name('avatars');
+Route::get('avatar/{id}', 'HomeController@showAvatar')->name('avatar');
+Route::get('addAvatar', 'HomeController@addAvatar')->name('addAvatar');
+Route::post('addAvatar', 'HomeController@saveAvatar')->name('postAvatar');
+Route::get('deleteAvatar/{id}', 'HomeController@deleteAvatar')->name('deleteAvatar');
+Auth::routes();
+

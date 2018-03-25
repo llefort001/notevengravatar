@@ -12,6 +12,6 @@ class Avatar extends Model
         return $this->belongsTo('App\User');
     }
     protected $fillable = [
-        'email', 'pic',
+        'user_id','email', 'pic',
     ];
 }
