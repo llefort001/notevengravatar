@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
+use Dingo\Api\Routing\Router;
+$api = app(Router::class);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +18,19 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+
+$api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
+    $api->get('users', 'App\Http\Controllers\Api\V1\UserController@index');
+});
+$api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
+    $api->get('avatars', 'App\Http\Controllers\Api\V1\AvatarController@index');
+});
+$api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
+    $api->get('avatars/{email}', 'App\Http\Controllers\Api\V1\AvatarController@byEmail');
+});
+$api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
+    $api->get('info/', 'App\Http\Controllers\Api\V1\InfoController@index');
 });
