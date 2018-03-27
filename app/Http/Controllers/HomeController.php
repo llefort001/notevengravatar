@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
         $avatars = Avatar::where('user_id',Auth::id())->get();
-        return view('avatarlist')->with('avatars', $avatars);
+        return view('avatars')->with('avatars', $avatars);
     }
 
     public function addAvatar()
@@ -41,7 +41,7 @@ class HomeController extends Controller
     {
         $avatar = Avatar::findOrFail($id);
         $avatar->delete();
-        return view('avatarlist');
+        return Redirect::to('avatars');
     }
 
     public function saveAvatar(Request $request)

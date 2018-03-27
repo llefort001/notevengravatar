@@ -2,18 +2,21 @@
 @section('content')
 <h1>Ajouter un avatar</h1>
 {!! Form::open(array('url' => 'addAvatar', 'files'=>true)) !!}
-<div>
+<div class="form-group">
     {!! Form::label('email', 'Email:') !!}
-    {!! Form::email('email') !!}
+    {!! Form::email('email',null,array('class' => 'form-control', 'placeholder' => "example@email.com", "aria-describedby" => "emailHelp")) !!}
+    <small id="emailHelp" class="form-text text-muted">Cet email doit vous appartenir</small>
 </div>
-<div>
+<div class="form-group">
     <p>
-        {!! Form::label('Choisissez un avatar (max 16Mo)') !!}
-        {!! Form::file('pic') !!}
+        {!! Form::label('pic','Choisissez un avatar (max 16Mo)',array('class' => 'btn btn-primary', 'accept' => 'image/*')) !!}
+
+        <br>
+        {!! Form::file('pic',array('style' => 'display: none')) !!}
     </p>
 
 </div>
 <div>
-    {!! Form::submit('Ajouter un avatar') !!}
+    {!! Form::submit('Ajouter un avatar',array('class' => 'btn btn-success')) !!}
 </div>
 @endsection
