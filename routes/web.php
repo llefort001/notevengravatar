@@ -21,3 +21,8 @@ Route::post('addAvatar', 'HomeController@saveAvatar')->name('postAvatar');
 Route::get('deleteAvatar/{id}', 'HomeController@deleteAvatar')->name('deleteAvatar');
 Auth::routes();
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+

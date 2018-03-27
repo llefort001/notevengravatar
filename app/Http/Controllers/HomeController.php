@@ -39,7 +39,6 @@ class HomeController extends Controller
     }
     public function deleteAvatar($id)
     {
-
         $avatar = Avatar::findOrFail($id);
         $avatar->delete();
         return view('avatarlist');
