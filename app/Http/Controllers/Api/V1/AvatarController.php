@@ -14,7 +14,7 @@ use Dingo\Api\Contract\Http\Request;
 use Dingo\Api\Http\Response;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller;
-
+use Image;
 
 class AvatarController extends Controller
 {
@@ -25,10 +25,32 @@ class AvatarController extends Controller
         return $this->response->collection(Avatar::all(), new AvatarTransformer);
     }
 
-    public function byEmail($email) : Response
-    {
-        $avatar =Avatar::where('email', '=', $email)->get();
-        if ($avatar->isNotEmpty())return $this->response->collection($avatar, new AvatarTransformer);
-        else throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('Aucun avatar ne correspond à cet email,');
-    }
+//    public function showAvatar($hashedEmail) : Response
+//    {
+//        $avatar =Avatar::where('hashed_email', '=', $hashedEmail)->firstOrFail();
+//        $pic = Image::make($avatar->pic);
+//        $response = Response::make($pic->encode('jpeg'));
+//        dump($response);
+//        die;
+//        //setting content-type
+//        $response->header('Content-Type', 'image/jpeg');
+//        if ($avatar->isNotEmpty()) return $response;
+//        else throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('Aucun avatar ne correspond à cet email');
+////        $avatar =Avatar::where('email', '=', $email)->get();
+////        if ($avatar->isNotEmpty())return $this->response->collection($avatar, new AvatarTransformer);
+////        else throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('Aucun avatar ne correspond à cet email');
+//
+//    }
+//
+//    public function showAvatar2($hashedEmail)
+//    {
+//        $avatar =Avatar::where('hashed_email', '=', $hashedEmail)->firstOrFail();
+//        $pic = Image::make($avatar->pic);
+//        $response = \Illuminate\Support\Facades\Response::make($pic->encode('jpeg'));
+//        dump($response);
+//        die;
+//        //setting content-type
+//        $response->header('Content-Type', 'image/jpeg');
+//        return $response;
+//    }
 }

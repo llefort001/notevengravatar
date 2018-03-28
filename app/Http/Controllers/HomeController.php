@@ -54,6 +54,7 @@ class HomeController extends Controller
             'user_id' => Auth::id(),
             'email' => $request->get('email'),
             'pic' => $img,
+            'hashed_email'=> md5($request->get('email'))
         ]);
         return Redirect::to('avatars');
     }
@@ -61,15 +62,13 @@ class HomeController extends Controller
     /*
      * Extracts Avatar's data from DB and makes an image
      */
-    public function showAvatar($id)
+    public function showAvatar($hashedEmail)
     {
-        $avatar = Avatar::findOrFail($id);
+        $avatar =Avatar::where('hashed_email', '=', $hashedEmail)->firstOrFail();
         $pic = Image::make($avatar->pic);
         $response = Response::make($pic->encode('jpeg'));
-
         //setting content-type
         $response->header('Content-Type', 'image/jpeg');
-
         return $response;
     }
 }

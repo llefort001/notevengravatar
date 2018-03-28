@@ -17,8 +17,9 @@ class AvatarTransformer extends TransformerAbstract
     public function transform(Avatar $avatar) : array
     {
         return [
-            'email' => $avatar->email,
-            'pic' => base64_encode($avatar->pic)
+            'avatar_id  ' => route('avatar', ['id' => $avatar->id])
+
+
         ];
     }
 

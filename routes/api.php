@@ -29,7 +29,7 @@ $api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
     $api->get('avatars', 'App\Http\Controllers\Api\V1\AvatarController@index');
 });
 $api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
-    $api->get('avatars/{email}', 'App\Http\Controllers\Api\V1\AvatarController@byEmail');
+    $api->get('avatars/{email}', 'App\Http\Controllers\HomeController@showAvatar');
 });
 $api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
     $api->get('info/', 'App\Http\Controllers\Api\V1\InfoController@index');
