@@ -12,7 +12,7 @@
             <tr>
                 <td>{{ $avatar->id }}</td>
                 <td>{{ $avatar->email }}</td>
-                <td><img class="img-fluid" style="width: 128px" src="avatar/{{ $avatar->id }}">
+                <td><img class="img-fluid" style="width: 128px" src="avatar/{{ $avatar->hashed_email }}">
                     <a class="btn btn-outline-primary"
                        href="{{route('deleteAvatar', ['id' => $avatar->id ])}}"
                        onclick="return confirm('Confirmer la suppression de l\'avatar ?')">Supprimer</a></td>

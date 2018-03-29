@@ -28,9 +28,9 @@ $api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
 $api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
     $api->get('avatars', 'App\Http\Controllers\Api\V1\AvatarController@index');
 });
-$api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
-    $api->get('avatars/{email}', 'App\Http\Controllers\Api\V1\AvatarController@byEmail');
+$api->version('v1', [], function (Router $api) {
+    $api->get('avatar/{hashedEmail}', 'App\Http\Controllers\Api\V1\AvatarController@showAvatar');
 });
-$api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
+$api->version('v1', [], function (Router $api) {
     $api->get('info/', 'App\Http\Controllers\Api\V1\InfoController@index');
 });
