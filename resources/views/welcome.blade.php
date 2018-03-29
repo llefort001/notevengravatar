@@ -81,6 +81,7 @@
             <div class="title m-b-md">
                 Laravel
             </div>
+            {!! link_to_route('login', 'Login') !!}
 
             <div class="links">
                 <a href="https://laravel.com/docs">Documentation</a>
