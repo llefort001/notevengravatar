@@ -12,11 +12,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
+        <div class="container-fluid">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
@@ -32,14 +33,18 @@
                         <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
                     @else
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                <a href="{{ route('home') }}" class="dropdown-item">
+                                    Mes avatars
+                                </a>
                                 <a href="{{ route('logout') }}" class="dropdown-item"
                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    Logout
+                                    Se déconnecter
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -54,11 +59,13 @@
 
         </div>
     </nav>
-
-    @yield('content')
+    <div class="container-fluid">
+        @yield('content')
+    </div>
 </div>
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/forms.js') }}"></script>
 </body>
 </html>

@@ -29,6 +29,6 @@ class User extends Authenticatable
 
     public function avatars()
     {
-        return $this->hasMany('App\Avatar');
+        return $this->hasMany(Avatar::class);
     }
 }

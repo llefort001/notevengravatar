@@ -30,6 +30,9 @@ class HomeController extends Controller
     public function index()
     {
         $avatars = Avatar::where('user_id',Auth::id())->get();
+
+       // $avatars = Auth::user()->avatars;
+
         return view('avatars')->with('avatars', $avatars);
     }
 
@@ -37,9 +40,8 @@ class HomeController extends Controller
     {
         return view('addAvatar');
     }
-    public function deleteAvatar($id)
+    public function deleteAvatar(Avatar $avatar)
     {
-        $avatar = Avatar::findOrFail($id);
         $avatar->delete();
         return Redirect::to('avatars');
     }
@@ -57,18 +59,5 @@ class HomeController extends Controller
             'hashed_email'=> md5($request->get('email'))
         ]);
         return Redirect::to('avatars');
-    }
-
-    /*
-     * Extracts Avatar's data from DB and makes an image
-     */
-    public function showAvatar($hashedEmail)
-    {
-        $avatar =Avatar::where('hashed_email', '=', $hashedEmail)->firstOrFail();
-        $pic = Image::make($avatar->pic);
-        $response = Response::make($pic->encode('jpeg'));
-        //setting content-type
-        $response->header('Content-Type', 'image/jpeg');
-        return $response;
     }
 }

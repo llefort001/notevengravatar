@@ -15,6 +15,7 @@ use Dingo\Api\Http\Response;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller;
 use Image;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AvatarController extends Controller
 {
@@ -29,10 +30,10 @@ class AvatarController extends Controller
     {
         $avatar =Avatar::where('hashed_email', '=', $hashedEmail)->firstOrFail();
         $pic = Image::make($avatar->pic);
-        $response = \Illuminate\Support\Facades\Response::make($pic->encode('jpeg'));
+        $response = response()->make($pic->encode('jpeg'));
         //setting content-type
         $response->header('Content-Type', 'image/jpeg');
-        if(!is_null($avatar)) throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('Aucun avatar ne correspond à cet email');
+        if(is_null($avatar)) throw new NotFoundHttpException('Aucun avatar ne correspond à cet email');
         return $response;
 
     }
