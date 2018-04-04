@@ -30,7 +30,7 @@ class InfoController extends Controller
      * @Get("/")
      * @Versions({"v1"})
      */
-    public function index(Request $request): array
+    public function index(): array
     {
         $test = array(
             "Api Name" => env("API_NAME", "Api name not defined"),
