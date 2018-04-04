@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/what', function () {
-    return view('what');
-})->name('what');
-
 Route::get('/documention', function () {
     return view('doc');
 })->name('doc');
