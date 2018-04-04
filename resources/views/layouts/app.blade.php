@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
@@ -27,7 +28,11 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    @if (Auth::guest())
+
+                <li class="nav-item"><a href="{{ route('doc') }}" class="nav-link">Documentation</a></li>
+
+
+                @if (Auth::guest())
                         <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
                         <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
                     @else
@@ -54,8 +59,10 @@
 
         </div>
     </nav>
+    <div class="container">
+        @yield('content')
+    </div>
 
-    @yield('content')
 </div>
 
 <!-- Scripts -->

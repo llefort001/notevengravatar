@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('content')
 
+
+    @if(!$errors->all() == [])
+        <div class="alert alert-danger" role="alert">
+            @foreach ($errors->all() as $errors)
+                {{ $error }}
+            @endforeach
+        </div>
+    @endif
+
 <h1>Ajouter un avatar</h1>
 {!! Form::open(array('url' => 'addAvatar', 'files'=>true)) !!}
 <div class="form-group">

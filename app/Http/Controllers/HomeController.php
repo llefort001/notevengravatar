@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Image;
+use Illuminate\Database\QueryException;
 
 class HomeController extends Controller
 {
@@ -50,11 +51,15 @@ class HomeController extends Controller
         $img = Image::make($file);
         Response::make($img->encode('jpeg'));
 
-        Avatar::create([
-            'user_id' => Auth::id(),
-            'email' => $request->get('email'),
-            'pic' => $img,
-        ]);
+        try {
+            Avatar::create([
+                'user_id' => Auth::id(),
+                'email' => $request->get('email'),
+                'pic' => $img,
+            ]);
+        } catch (QueryException $e) {
+            return view('addAvatar')->with(array("errors"=>"test"));
+        }
         return Redirect::to('avatars');
     }
 
