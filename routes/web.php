@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('avatars', 'HomeController@index')->name('avatars');
-//Route::get('avatar/{hashed_email}', 'HomeController@showAvatar')->name('avatar');
 Route::get('addAvatar', 'HomeController@addAvatar')->name('addAvatar');
 Route::post('addAvatar', 'HomeController@saveAvatar')->name('postAvatar');
 Route::get('deleteAvatar/{avatar}', 'HomeController@deleteAvatar')->name('deleteAvatar');
-Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+
 

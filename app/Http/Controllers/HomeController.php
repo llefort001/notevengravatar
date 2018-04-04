@@ -29,10 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $avatars = Avatar::where('user_id',Auth::id())->get();
-
-       // $avatars = Auth::user()->avatars;
-
+        $avatars = Avatar::where('user_id', Auth::id())->get();
         return view('avatars')->with('avatars', $avatars);
     }
 
@@ -40,6 +37,7 @@ class HomeController extends Controller
     {
         return view('addAvatar');
     }
+
     public function deleteAvatar(Avatar $avatar)
     {
         $avatar->delete();
@@ -50,13 +48,12 @@ class HomeController extends Controller
     {
         $file = Input::file('pic');
         $img = Image::make($file);
-        Response::make($img->encode('jpeg'));
-
+        Response::make($img->encode('png'));
         Avatar::create([
             'user_id' => Auth::id(),
             'email' => $request->get('email'),
             'pic' => $img,
-            'hashed_email'=> md5($request->get('email'))
+            'hashed_email' => md5($request->get('email'))
         ]);
         return Redirect::to('avatars');
     }

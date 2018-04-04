@@ -45,9 +45,9 @@ class AvatarController extends Controller
             throw new NotFoundHttpException('Aucun avatar ne correspond à cet email');
         }
         $pic = Image::make($avatar->pic);
-        $response = response()->make($pic->encode('jpeg'));
+        $response = response()->make($pic->encode('png'));
         //setting content-type
-        $response->header('Content-Type', 'image/jpeg');
+        $response->header('Content-Type', 'image/png');
         return $response;
 
     }
