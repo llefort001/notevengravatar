@@ -16,11 +16,20 @@ use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
 use PhpParser\Node\Expr\Array_;
-
+/**
+ * @Resource("Informations", uri="/info")
+ */
 class InfoController extends Controller
 {
     use Helpers;
 
+    /**
+     * Show API informations (name,format,version,avatar sizes,image formats)
+     *
+     * Get a JSON representation of the informations about the API.
+     * @Get("/")
+     * @Versions({"v1"})
+     */
     public function index(Request $request): array
     {
         $test = array(

@@ -19,15 +19,6 @@ $api = app(Router::class);
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-
-$api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
-    $api->get('users', 'App\Http\Controllers\Api\V1\UserController@index');
-});
-$api->version('v1', ['middleware' => 'api.auth'], function (Router $api) {
-    $api->get('avatars', 'App\Http\Controllers\Api\V1\AvatarController@index');
-});
 $api->version('v1', [], function (Router $api) {
     $api->get('avatar/{hashedEmail}', 'App\Http\Controllers\Api\V1\AvatarController@showAvatar')->name('avatar');
 });

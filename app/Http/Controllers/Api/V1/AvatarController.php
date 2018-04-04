@@ -18,15 +18,23 @@ use Image;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * @Resource("Avatars", uri="/avatar")
+ */
 class AvatarController extends Controller
 {
     use Helpers;
 
-    public function index(Request $request): Response
-    {
-        return $this->response->collection(Avatar::all(), new AvatarTransformer);
-    }
-
+    /**
+     * Show an avatar for a given hash
+     *
+     * Get a JPEG representation of the avatar.
+     * @Get("/{?hashed_email}")
+     * @Versions({"v1"})
+     * @Parameters({
+     *      @Parameter("hashed_email", type="string", required=true, description="The md5 hash of the email linked to the avatar.", default=null),
+     * })
+     */
     public function showAvatar($hashedEmail)
     {
 
