@@ -30,6 +30,8 @@ class AvatarController extends Controller
     {
         $avatar =Avatar::where('hashed_email', '=', $hashedEmail)->firstOrFail();
         $pic = Image::make($avatar->pic);
+        dump("test");
+        die;
         $response = response()->make($pic->encode('jpeg'));
         //setting content-type
         $response->header('Content-Type', 'image/jpeg');
