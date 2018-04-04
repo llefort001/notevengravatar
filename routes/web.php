@@ -14,6 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/what', function () {
+    return view('what');
+})->name('what');
+
+Route::get('/documention', function () {
+    return view('doc');
+})->name('doc');
+
 Route::get('avatars', 'HomeController@index')->name('avatars');
 Route::get('avatar/{id}', 'HomeController@showAvatar')->name('avatar');
 Route::get('addAvatar', 'HomeController@addAvatar')->name('addAvatar');

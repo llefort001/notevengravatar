@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <h1>Ajouter un avatar</h1>
 {!! Form::open(array('url' => 'addAvatar', 'files'=>true)) !!}
 <div class="form-group">
