@@ -11,8 +11,8 @@
         </div>
 
         <div class="form-group input-file-container">
-            {!! Form::label('pic','Choisissez un avatar (max 16Mo)',array('class' => 'input-file-trigger btn btn-success', 'accept' => 'image/*')) !!}
-            {!! Form::file('pic',array('class'=>'input-file','id'=>'my-file','required'=>'required')) !!}
+            {!! Form::label('pic','Choisissez un avatar (max 16Mo)',array('class' => 'input-file-trigger btn btn-success')) !!}
+            {!! Form::file('pic',array('class'=>'input-file','id'=>'my-file','required'=>'required','accept' => 'image/*')) !!}
             <p class="file-return"></p>
         </div>
         {!! Form::submit('Ajouter un avatar',array('class' => 'btn btn-primary')) !!}
