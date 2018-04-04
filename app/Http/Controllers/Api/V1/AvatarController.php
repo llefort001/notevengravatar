@@ -15,27 +15,31 @@ use Dingo\Api\Http\Response;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller;
 use Image;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AvatarController extends Controller
 {
     use Helpers;
 
-    public function index(Request $request) : Response
+    public function index(Request $request): Response
     {
         return $this->response->collection(Avatar::all(), new AvatarTransformer);
     }
-    
+
     public function showAvatar($hashedEmail)
     {
-        $avatar =Avatar::where('hashed_email', '=', $hashedEmail)->firstOrFail();
+
+        try {
+            $avatar = Avatar::where('hashed_email', $hashedEmail)
+                ->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            throw new NotFoundHttpException('Aucun avatar ne correspond à cet email');
+        }
         $pic = Image::make($avatar->pic);
-        dump("test");
-        die;
         $response = response()->make($pic->encode('jpeg'));
         //setting content-type
         $response->header('Content-Type', 'image/jpeg');
-        if(is_null($avatar)) throw new NotFoundHttpException('Aucun avatar ne correspond à cet email');
         return $response;
 
     }

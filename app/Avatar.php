@@ -9,7 +9,7 @@ class Avatar extends Model
     //
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
     protected $fillable = [
         'user_id','email', 'pic','hashed_email'
