@@ -57,15 +57,15 @@ class HomeController extends Controller
             'user_id' => Auth::id(),
             'email' => $request->get('email'),
             'pic' => $img,
-        'hashed_email' => md5($request->get('email'))]);}
+            'hashed_email' => md5($request->get('email'))]);}
         catch (QueryException $e) {
             if($request->get('email') == null)
                 return view('addAvatar')->with("error", "You must fill email");
-            else
-                return view('addAvatar')->with("error", "Email already used");
+
+            return view('addAvatar')->with("error", "Email already used");
         }
-        catch (\Exception $e) {
-            dd($e);
+        catch (NotReadableException $e) {
+            dd("e");
             if ($e instanceof PostTooLargeException)
                 return view('addAvatar')->with("error","File too large");
 

@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+<div class="container mt-2">
+    @if(isset($error))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{$error}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="col-2 offset-5">
         <h1>Ajouter un avatar</h1>
         {!! Form::open(array('route' => 'addAvatar','class' => 'form','files'=>true)) !!}
@@ -17,5 +26,5 @@
         </div>
         {!! Form::submit('Ajouter un avatar',array('class' => 'btn btn-primary')) !!}
     </div>
-
+</div>
 @endsection
