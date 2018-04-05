@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Image;
+use Illuminate\Database\QueryException;
+use Intervention\Image\Exception\NotReadableException;
+use Illuminate\Http\Exceptions\PostTooLargeException;
 
 class HomeController extends Controller
 {
@@ -49,12 +52,22 @@ class HomeController extends Controller
         $file = Input::file('pic');
         $img = Image::make($file);
         Response::make($img->encode('png'));
-        Avatar::create([
+
+        try {Avatar::create([
             'user_id' => Auth::id(),
             'email' => $request->get('email'),
             'pic' => $img,
-            'hashed_email' => md5($request->get('email'))
-        ]);
+        'hashed_email' => md5($request->get('email'))]);}
+        catch (QueryException $e) {
+          return view('addAvatar')->with("error", "Email already used");
+        }
+        catch (\Exception $e) {
+            if ($e instanceof PostTooLargeException)
+                return view('addAvatar')->with("error","File too large");
+
+            if ($e instanceof NotReadableException)
+                return view('addAvatar')->with("error","Image source not readable");
+        }
         return Redirect::to('avatars');
     }
 }
