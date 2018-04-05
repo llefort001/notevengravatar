@@ -37,11 +37,9 @@ class InfoController extends Controller
             "Api Format" => env("API_DEFAULT_FORMAT", "json"),
             "Api Version" => env("API_VERSION", "v0"),
             "Avatar sizes" => array(
-                "small" => "32x32",
-                "medium" => "128x128",
-                "large" => "512x512"
+                "none" => "available in v2",
             ),
-            "Default avatar size" => "128x128",
+            "Default avatar size" => "source size",
             "Image formats" => array(
                 "png" => "png",
                 "jpeg" => "jpeg"
