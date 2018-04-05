@@ -61,9 +61,13 @@ class HomeController extends Controller
             ]);
         }
         catch (QueryException $e) {
-          return view('addAvatar')->with("error", "Email already used");
+            if($request->get('email') == null)
+                return view('addAvatar')->with("error", "You must fill email");
+            else
+                return view('addAvatar')->with("error", "Email already used");
         }
         catch (\Exception $e) {
+            dd($e);
             if ($e instanceof PostTooLargeException)
                 return view('addAvatar')->with("error","File too large");
 

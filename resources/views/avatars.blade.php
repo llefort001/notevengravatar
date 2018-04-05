@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+<div class="container">
     <h1>Avatars</h1>
     <table class="table">
         <tr>
@@ -20,6 +20,6 @@
         @endforeach
     </table>
     <a class="btn btn-primary" href="addAvatar">Ajouter un avatar</a>
-
+</div>
 
 @endsection

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<div class="container">
     <div class="row justify-content-center mt-5">
         <h1 class="display-1 text-center home-title">Not Even Gravatar</h1>
         <div class="col-sm-6 text-center">
@@ -9,5 +10,5 @@
             <p>Gravatar is run and supported by Lucas Lefort, Paul Laborde et Adrien De Meyer</p>
         </div>
     </div>
-
+</div>
 @endsection
