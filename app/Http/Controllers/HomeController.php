@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Image;
 use Illuminate\Database\QueryException;
+use Intervention\Image\Exception\NotReadableException;
+use Illuminate\Http\Exceptions\PostTooLargeException;
 
 class HomeController extends Controller
 {
@@ -57,8 +59,16 @@ class HomeController extends Controller
                 'email' => $request->get('email'),
                 'pic' => $img,
             ]);
-        } catch (QueryException $e) {
-            return view('addAvatar')->with(array("errors"=>"test"));
+        }
+        catch (QueryException $e) {
+          return view('addAvatar')->with("error", "Email already used");
+        }
+        catch (\Exception $e) {
+            if ($e instanceof PostTooLargeException)
+                return view('addAvatar')->with("error","File too large");
+
+            if ($e instanceof NotReadableException)
+                return view('addAvatar')->with("error","Image source not readable");
         }
         return Redirect::to('avatars');
     }

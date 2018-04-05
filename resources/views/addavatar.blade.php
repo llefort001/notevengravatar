@@ -2,11 +2,11 @@
 @section('content')
 
 
-    @if(!$errors->all() == [])
+    @if(isset($error))
         <div class="alert alert-danger" role="alert">
-            @foreach ($errors->all() as $errors)
+
                 {{ $error }}
-            @endforeach
+
         </div>
     @endif
 
