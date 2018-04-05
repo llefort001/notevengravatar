@@ -8,7 +8,7 @@
         @foreach($avatars as $key => $avatar)
             <div class="col-3">
                 <div class="card text-center mb-4">
-                    <img class="mx-auto mt-1" style="width: 128px" src="api/avatar/{{ $avatar->hashed_email }}"
+                    <img class="mx-auto mt-1" style="width: 128px; height: 128px;" src="api/avatar/{{ $avatar->hashed_email }}"
                          alt="Card avatar cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $avatar->email }}</h5>

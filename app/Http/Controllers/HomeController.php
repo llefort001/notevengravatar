@@ -65,7 +65,6 @@ class HomeController extends Controller
             return view('addAvatar')->with("error", "Email already used");
         }
         catch (NotReadableException $e) {
-            dd("e");
             if ($e instanceof PostTooLargeException)
                 return view('addAvatar')->with("error","File too large");
 
